@@ -1,8 +1,9 @@
 # Node Study
 
-
-
-
+<br>
+<br>
+<br>
+<br>
 
 
 # What is node
@@ -13,8 +14,8 @@
 ## Node is a runtime environment for JavaScript on a machine.
 Node.js is a server-side enviroment for executing JavaScript that allows us to write JavaScript that runs on the server. It is an open source (MIT license) and cross-platform (PC, MAC, or Linux) runtime enviroment for server-side and networking applications (i.e. executing JavaScript OUTSIDE of a browser).
 
-## Node.js uses the V8 JavaScript engine in chrome.
-Node includes the v8 JavaScript engine plus additional modules that give us extra capabilites that are not inside browsers. V8 is a "just-in-time compiler" written in C++ that takes the JavaScript you write in your web apps and turns it into machine-level instructions. It engine translates JavaScript into instructions that the computer can execute.
+## Node uses the V8 JavaScript engine in chrome.
+Node includes the v8 JavaScript engine plus additional modules that give us extra capabilites that are not inside browsers. V8 is a "just-in-time compiler" written in C++ that takes the JavaScript you write in your web apps and turns it into machine-level instructions. It engine translates JavaScript into instructions that the computer can execute. On top of the V8 engine sit a collection of "modules". These modules include things like file-system, networking, etc. Other modules are built by the commmunity and distributed via NPM.
      
 ## Node is NOT...
 Node is NOT a programming langauge. Node is NOT to be compared to other frameworks like ASP.NET. Node is NOT a framework (its a runtime enviroment for executing JavaScript code). Node is NOT for CPU-intensive applications (since node applications are single threaded).
@@ -49,9 +50,33 @@ A great reason to use node is that with node application we use JavaScript. Beca
 Having the front-end and the back-end written in the same langauge (i.e. JavaScript) is good for a few reasons. There are no syntactical difference when you use one language like JavaScript. Being able to share code betwen the front end and the back end. For example: Shared libraries (like Underscore, etc.) used for both front and back ends so that if you are using user authentication on front and back end, you want to use the same library to authorize the user. For example: Using an algorithm or function that you could use on the front and back end. For example: Using a data model, like the definition of your user which can have many properties. If the back end language is not the same as the front end, you will also have a lot fo maintenance overhead.
 
 ## Node is used by many large companies.
-Node is used by many large companies like paypal, NetFlix, Uber, etc.
-            o   Example of paypal who rebuilt one of thier Java and Spring based application with node resulted in 
-                an application that was twice as fast with fewer people, 33% fewer lines of code, 40% fewer files,
-                and most importantly doubles the number of requests per seconds with 35% faster average repsonse time. 
-    •   Node has a large ecosystem of open-source libraries so you dont have to build your own building-block from scratch.
-    •   JavaScript works very well with JSON which is ideal for web apps both on the front and back ends.
+Node is used by many large companies like paypal, NetFlix, Uber, etc. Example of paypal who rebuilt one of thier Java and Spring based application with node resulted in an application that was twice as fast with fewer people, 33% fewer lines of code, 40% fewer files, and most importantly doubles the number of requests per seconds with 35% faster average repsonse time. Node has a large ecosystem of open-source libraries so you dont have to build your own building-block from scratch. JavaScript works very well with JSON which is ideal for web apps both on the front and back ends.
+
+</dd>
+</dl>
+
+<br>
+<br>
+<br>
+<br>
+
+# Is Node Asynchronous or Synchronous?
+
+<dl>
+<dd>
+
+## Node is asynchronous.
+Node has an Asynchronous, "non-blocking" architecture that uses a single thread to service multiple requests. A Synchronous "blocking" architecture must service each request before moving on to the next one making it inefficient compared to asynchronous arhcitecture. For example, imagine a restaurant with multiple tables, a waiter, and a kitchen. An Asynchronous restaurant has a waiter (thread) that could service multiple tables (responses) while the orders are given to the kitchen (server). When those orders are done, the finished order in the "event queue" is brough to the requesting table.  
+
+</dd>
+</dl>
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
