@@ -76,7 +76,67 @@ Node has an Asynchronous, "non-blocking" architecture that uses a single thread 
 <br>
 <br>
 
+# What is NPM?
+
+<dl>
+<dd>
+
+## NPM manages dependencies.
+NPM (Node Package Manager) is used for managing dependencies and other meta information. NOM can be used to initialize a project, list what packages are needed in order to function, write short scripts that allows developers to work with the project, etc.
+
+</dd>
+</dl>
+
+<br>
+<br>
+<br>
+<br>
+
+# What are CLI tools?
+
+<dl>
+<dd>
+
+## CLI tools are prewritten scripts.
+CLI tools (Command Line Interface tools) are prewritten scripts that can be run to perform various tasks. For example, the ```create=react-app``` commmand that creates a React application, is a Node script that generates all the files into a new file for you.
+
+</dd>
+</dl>
+
+<br>
+<br>
+<br>
+<br>
+
+# What are local dependencies?
+
+<dl>
+<dd>
+
+## Local dependencies are for local projects.
+For example, when you install a local dependency, it will be installed ONLY on the respective project and not on the whole machine. Local dependencies are preferred to global installs becuse there might be different version numbers we want to use for particualr projects. Additionally, local dependencies are listed in your package.json file so they are explicit. Also, global dependencies might create system conflicts with other tools.
+
+</dd>
+</dl>
+
+<br>
+<br>
+<br>
+<br>
+
+# What is NPX?
+
+<dl>
+<dd>
+
+## NPX is used for one-time commands.
+For the times you only need run a CLI tool once or every once and a while where you do NOT need to have it as a dependency, NPX will let you run whatever follows as a one  time command without a global install. For example, when you use ```npx create-react-app```, you only need to run this once to create the scaffold of your React application. Since it is a a one-off command, you run it and the command gets cleaned up once its finished.
 
 
+</dd>
+</dl>
 
-
+<br>
+<br>
+<br>
+<br>
