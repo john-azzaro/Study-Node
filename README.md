@@ -82,7 +82,7 @@ Node has an Asynchronous, "non-blocking" architecture that uses a single thread 
 <dd>
 
 ## NPM manages dependencies.
-NPM (Node Package Manager) is used for managing dependencies and other meta information. NOM can be used to initialize a project, list what packages are needed in order to function, write short scripts that allows developers to work with the project, etc.
+Node Package Manager, or NPM, is a command line tool (such as using Gitbash) that installs, updates, or uninstalls Node.js packages in your application. Additionally, NPM can be used to initialize a project, maintain dependencies, publish packages, and lists them so others can use them and runs the application. There are also short scripts that allow developers to work with a project. For example, when you write "npm install underscore" to the commmand line, you are using Node Package Manager (NPM) to install the third-party library "underscore" to your project. NPM is also an online repository for open-source Node.js packages where the community creates useful modules and published them as packages to the repository. NPM and Node are developed independently, so if you check the version of npm and node, they will be different.
 
 </dd>
 </dl>
