@@ -98,7 +98,7 @@ NPM (Node Package Manager) is used for managing dependencies and other meta info
 <dd>
 
 ## CLI tools are prewritten scripts.
-CLI tools (Command Line Interface tools) are prewritten scripts that can be run to perform various tasks. For example, the ```create=react-app``` commmand that creates a React application, is a Node script that generates all the files into a new file for you.
+CLI (Command Line Interface) tools are prewritten scripts that can be run to perform various tasks. CLI is often used by developers to configurre computers, install software, and access features that are not available in the graphical interface. If you have any experience using command line/git bash, you have a good idea of some common commands, like ```cd``` to move up one level, ```ls``` to list the directory, etc. A tool would be something more specific, like a one-time run creating the scaffold for a application. For example, the ```create=react-app``` commmand that creates a React application, is a Node script that generates all the files into a new file for you.
 
 </dd>
 </dl>
