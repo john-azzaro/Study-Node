@@ -46,6 +46,7 @@ Getting started with node
 
 ## What is node and why use it?
 ================================
+* Node JS is a multi-platform JavaScript environment which can be applied to many system tasks such as utility scripts and running web servers.
 * Node is JavaScript running directly on a machine, not inside a browser.
 * Why Node? Node is used to solve different problems than JavaScript in a browser.
 * JavaScript in a browser focuses on web-page interactivity and features. 
@@ -59,6 +60,7 @@ Getting started with node
 ===============
 * NPM is for managing a project's dependencies and other meta information.
 * use NPM to initialize a new project, list which packages the project needs in order to function, and write short scripts that allow developers to work with the project.
+* NPM is the Node package manager which we can use for managing Node projects, listing dependencies and configuring commands.
 
 
 ## How do you initialize an NPM project?
@@ -100,11 +102,14 @@ Getting started with node
 
 # How do you execute node?
 ==========================
-To execute something in node, run the command "node <file-name>".
+* There are multiple approaches to working with Node. The most useful approach is to use Node script files; these can be executed in 
+  different ways such as node filename.js,
+* To execute something in node, run the command "node <file-name>".
 
 
 ## How do you use the node debugger?
 ====================================
+* The Node debugger is a powerful tool for understanding our own code and has more capabilities than console.log.
 * The node debugger will debug and inspect the code while executing.
 * In VSCode, you have a debugger section (the little bug icon with the x in the middle).
 * There are four main parts to using the debugger:
@@ -115,6 +120,7 @@ To execute something in node, run the command "node <file-name>".
 * To debug, you need to set breakpoints first by selecting the line (creates a red dot on the code line).
 * When you have that breakpoint established, you can run the debugger.
 * Push the green play icon to start the debugger.
+* This is called the "Continue" which will continue the script's execution
 * After you push play, a few things will happen:
     * The currently active breakpoint is highlighted, with an outline around the red circle.
     * There are a list of the available variables, grouped by their scope.
@@ -123,11 +129,30 @@ To execute something in node, run the command "node <file-name>".
     * The Debug Console gives us feedback that the script started in debug mode.
     * Navigation controls such as "Step Over", "Restart" and "Continue" are available.
 * You can now inspect the expressions by hovering over them.
+* You can add new breakpoints at future lines of code whilst paused at other lines. Add new breakpoints and press "Continue" to jump to them.
+* For all other cases, use the "Step over" button or "Continue".
 
 
 ## What is stepover navigation?
 ===============================
+* Stepover is the little icon that is a dot and an right arching arrow over it.
+* "Step over" will move over the current statement.
 * Stepover navigation means stepping over parts of our code allows us to move through statements one at a time without adding new breakpoints.
+* If you're paused before a function call you don't want to inspect: "Step over".
+
+
+## What is the stepin navigation?
+=================================
+* This is the downwards popinting arrow to a small dot.
+* Sometimes, the statement we're on is a function invocation, we may want our debugger to move into that function rather than stepping over it.
+* If you're paused before a function you'd like to inspect: "Step into".
+
+
+## What is the stepout navigation?
+==================================
+* This is the upwards facing arrow with a dot at the bottom.
+* If you accidentally go into a function: "Step out".
+* If you're finished inspecting a function but want to keep debugging: "Step out".
 
 
 ## How do you work with the filesystem
@@ -164,5 +189,18 @@ To execute something in node, run the command "node <file-name>".
 * The require syntax (Common JS) behaves very similarly to the import from syntax we used in create-react-app projects.  
 * The import from syntax is a much more recent addition to the JavaScript language and so is not consistently supported everywhere. 
 * Use require to make sure dependencies can be used with confidence.
+
+
+## How do you require custom modules?
+======================================
+* To require custom modules, you simply need to require the module "const chalk = require('chalk-animation')";
+
+
+## How do you export modules?
+=============================
+* To export a module, you put it down at the bottom and write "module.exports = { animateString } ";
+
+
+## 
 
 
