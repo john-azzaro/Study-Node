@@ -19,3 +19,150 @@ one as well so I would urge you to consider at least doing a rough summary for y
 
 Objective of Study
 ==================
+The prupose of this node study is to do a good overview of node from the beginning to database management as a refresher.
+
+
+
+Getting started with node
+==========================
+* Node debuggers have a broad use than just debugging code, it allows you to see what is happening when the code is executing step-by-step.
+* IMportant things to keep in mind are: 
+    NPM
+    Executing JavaScript files
+    Command line interface (CLI)
+    Global and local installs
+    Package.JSON run scripts
+    NPX
+    Require
+    File system
+    Argv
+    Module exports
+
+
+## How do you check node version?
+===================================
+* To check node version, use "npm --version".
+
+
+## What is node and why use it?
+================================
+* Node is JavaScript running directly on a machine, not inside a browser.
+* Why Node? Node is used to solve different problems than JavaScript in a browser.
+* JavaScript in a browser focuses on web-page interactivity and features. 
+* Node is instead used for many other task as well.
+* Node is a free, open source multi-platform JavaScript environment.
+* Node was created in 2009 using Google's V8 JavaScript engine.
+* On top of the V8 engine sits a collection of "modules".
+
+
+## What is NPM?
+===============
+* NPM is for managing a project's dependencies and other meta information.
+* use NPM to initialize a new project, list which packages the project needs in order to function, and write short scripts that allow developers to work with the project.
+
+
+## How do you initialize an NPM project?
+========================================
+* Use the command "npm init"
+
+
+## How do you install a package?
+* Use the commmand "npm install X"
+* For example, to install the package debug, use the command "npm install debug"
+* When you install a package, you: 
+    * Adds an entry to the list of dependencies in your package.json file.
+    * Creates a folder called node_modules if it doesn't already exist.
+    * Downloads the source code for this dependency and stores it inside the ./node_modules folder.
+    * Downloads any dependencies of this dependency and also stores them recursively in your ./node_modules folder.
+
+
+## What are CLI tools?
+======================
+* CLI tools are prepackaged scripts that one once, like create-react-app.
+
+
+## What are local dependencies?
+===============================
+* Local dependencies are only for your local project, not for your whole machine, so your command line session doesn't know how to find the command.
+* Local dependencies are preferred to global installs. Why? Well...
+  * We might need different version numbers of the same dependency for different projects.
+  * Local dependencies are listed in a package.json, making them explicit.
+  * Global dependencies can have system level conflicts with other tools.
+  * Globals can pollute your whole machine.
+  * Local dependencies have less scope on your machine and therefore are less of a security risk.
+
+
+## What is NPX?
+===============
+* NPX is used for one time commands, like running Create-react-app.
+* NPX is used when you don't need to list this tool as a dependency for our project and we don't need them permanently installed on our machines.
+
+
+# How do you execute node?
+==========================
+To execute something in node, run the command "node <file-name>".
+
+
+## How do you use the node debugger?
+====================================
+* The node debugger will debug and inspect the code while executing.
+* In VSCode, you have a debugger section (the little bug icon with the x in the middle).
+* There are four main parts to using the debugger:
+    1. Setting and removing breakpoints.
+    2. Starting the script in a debugging mode.
+    3. Inspecting expressions.
+    4. Navigating through statements.
+* To debug, you need to set breakpoints first by selecting the line (creates a red dot on the code line).
+* When you have that breakpoint established, you can run the debugger.
+* Push the green play icon to start the debugger.
+* After you push play, a few things will happen:
+    * The currently active breakpoint is highlighted, with an outline around the red circle.
+    * There are a list of the available variables, grouped by their scope.
+    * The current call stack is displayed.
+    * The loaded scripts are listed.
+    * The Debug Console gives us feedback that the script started in debug mode.
+    * Navigation controls such as "Step Over", "Restart" and "Continue" are available.
+* You can now inspect the expressions by hovering over them.
+
+
+## What is stepover navigation?
+===============================
+* Stepover navigation means stepping over parts of our code allows us to move through statements one at a time without adding new breakpoints.
+
+
+## How do you work with the filesystem
+=======================================
+* You can also use a built-in module in Node to access the file system (the files on your computer), called fs. 
+* fs does not need to be installed, it is included with node.
+* We can use this module to read, create, remove, rename, etc... directories and files on our machine.
+
+
+## How does security factor into node?
+======================================
+* When working with Node, security becomes a very serious concern. As developers working with the back-end and systems, we need to be 
+  mindful of potential security risks with our code as the risks can be very high.
+* Just keep the following in mind:
+    * Avoid writing files based on user input
+    * Avoid reading and executing files you don't trust
+    * Restrict access to the file system to specific users when possible
+    * Restrict access to only specified directories
+    * Prefer to use a database
+
+
+## How do you require modules?
+==============================
+* First, before you require a module, make sure it is installed corretly in your package.json file.
+* Require is similar to import.
+* Require will "require" a local dependency you have installed for use in the file.
+* The require() function is globally available in Node projects and similar in behavior to the import x from 'x' statements we used in React.
+      // works in webpack and babel projects
+        import React from 'react';
+        import debug from 'debug';
+      // works in Node projects
+        const React = require('react');
+        const debug = require('debug');
+* The require syntax (Common JS) behaves very similarly to the import from syntax we used in create-react-app projects.  
+* The import from syntax is a much more recent addition to the JavaScript language and so is not consistently supported everywhere. 
+* Use require to make sure dependencies can be used with confidence.
+
+
