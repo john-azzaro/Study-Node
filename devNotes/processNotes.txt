@@ -201,6 +201,271 @@ Getting started with node
 * To export a module, you put it down at the bottom and write "module.exports = { animateString } ";
 
 
-## 
+
+======================
+#Web APIs and express
+======================
+
+## What is a webserver?
+======================
+  * A web server is a program that understands URLs and can read HTTP requests. Web servers may serve up static files 
+    (like HTML, CSS, JavaScript, or image files) or serve up dynamic content (i.e. content that is produced by a 
+    program on request).
+
+
+## What is a URL?
+=================
+  * A URL is simply an address for some unique resource on the Web. A resource could be any file such as an HTML page, 
+    CSS document, JavaScript file, image file, video and so on.
+
+      protocol                     port                       query
+          |                          |                           |
+        http://   www.domain.com    :80   /path/to/my/resource   ?   key1=value&key2=value2
+                        |                           |                            |
+                      domain                       path                     query-string
+
+                * protocol: Tells the browser which protocol to use. Usually HTTP or HTTPS for web content, but many 
+                            other protocols exist. FTP, for instance, is used to transfer files from one machine to 
+                            the next.
+
+                * domain: The domain uniquely identifies a web server and is actually mapped to an IP address.
+
+                * port: The port identifies an application on a machine. Think of the IP address as a telephone number 
+                        to a landline phone that is shared by several people. Even if you dial the number you still 
+                        need to ask for the person to whom you wish to speak. The IP address takes you to the correct 
+                        machine but the port number determines which application your request will be routed to.
+
+                * path: Once you have found the web server, the web server itself takes over from here. The path identifies 
+                        the resource that you wish to access. Sometimes this path may refer to a physical path to a file 
+                        on the machine, but more often than not it is an abstract value that simply maps the incoming 
+                        request to a function.
+
+                * query string: The query string is a set of parameters formatted into key/value pairs. Even though this 
+                                string exists on the end of the URL it is not used for routing the request to the resource, 
+                                but rather to send data into the function executed on the resource.
+
+
+
+## How do webserver receieve request messages?
+==============================================
+-------------------------------------------------------------------
+GET /dashboard HTTP/1.1                                                 // HTTP method (makes async calls to server and signals the users intention), the path, and the protocol id.
+User-Agent: Mozilla/4.0 (compatible; MSIE5.01; Windows NT)
+Host: thinkful.com                                                      // specifies the host part of the URL and is required for HTTP 1.1. This is because a single machine with a single IP address may be home to several different domains.
+Accept-Language: en-us                                                  // which language the user prefer
+Accept-Encoding: gzip, deflate
+Connection: Keep-Alive
+-------------------------------------------------------------------
+
+
+
+## What is express?
+===================
+  * Express is a minimalist framework, meaning that it does the bare minimum required, but is designed 
+    to allow anyone to add to the functionality.
+  * Express is the most widely used web framework for Node today. Express "knows" how to read and 
+    interpret HTTP requests and also "knows" how to respond to the client with HTTP responses.
+  * Express provides:
+      * Handlers for requests for all the HTTP verbs (GET, POST, etc)
+      * Common web application settings such as port numbers
+      * An architecture that allows middleware, so you can modify the request handling pipeline at any point.
+
+  
+
+# What is the express framework made of?
+========================================
+  * express(): The top-level function exported by the Express module. Calling this function creates an 
+               Express app and gives us access to the other Express objects below.
+  * Application: This object is the Express application itself. It provides methods to route HTTP requests, 
+                 configure middleware and other functionality relevant to constructing web applications.
+  * Request: Represents the HTTP request and has properties to access the various features of the request 
+             such as query string, headers and so on. By convention, this object is referred to as req and is 
+             passed to route handling methods.
+  * Response: Represents the HTTP response that is sent to the client when the request is completed. Conventionally 
+              called res, it is passed to route handling methods. It contains methods to format the response, set 
+              the response headers and status code.
+  * Router: We'll go over the Router object later on, but for now you can think of it as a "mini-application." 
+            It is used to make your applications more modular.
+
+
+
+## How do you create an express application?
+============================================
+  1. First, initiate an npm project with:        npm init -y       (note: use -y if you want all the default settings)
+  2. To start application, run the commmand:     npm start
+  3. Install express:                            npm install express
+  4. Import express to App.js                    const express = require('express');
+  5. Invoke the express module function:         const app = express();
+
+
+
+## What methods are available to the app object?
+================================================
+  * The app object has methods for:
+      * routing HTTP requests.
+      * configuring middleware.
+      * and more functionality too numerous to mention here.
+
+  * For example, a basic GET request would look something like this:
+    -----------------------------------------------------------
+        app.get('/', (req, res) => {                                // "get" at the location "/", and then callback with a request/response...
+          res.send('Hello Express!');                               // ... as a response a response of sending the message "Hello Express".
+        });
+    -----------------------------------------------------------
+
+
+## What is a port?
+===================
+  * A port is something the server needs to listen to a specific port so that requests to that port will be 
+    correctly routed to the server.
+  * Port numbers range from 0 to 65535.
+  * Ports 0 to 1023 are Well-Known Ports and have specific services associated with them.
+  * Ports between 1024 and 49151 are user or registered ports and may have been registered by certain 
+    companies for specific products.
+  * All other ports are known as dynamic ports.
+      -------------------------------------------------------------
+        Port	Protocol	Description
+        21	  FTP	      File Transfer protocol
+        22	  SSH	      secure logins to remote servers
+        23	  Telnet	  For remote management of servers
+        80	  HTTP	    For web content
+        110	  POP3	    Retrieve emails from a server
+        443	  HTTPS	    Encrypted transmission of web content
+      ---------------------------------------------------------------
+
+  * For example, if you choose to listen on port 3000,  this is what you would use:
+    --------------------------------------------------------------------------------------
+        app.listen(3000, () => {
+          console.log('Express server is listening on port 3000!');
+        });
+    --------------------------------------------------------------------------------------
+
+
+
+## What does a basic express application look like?
+===================================================
+  -----------------------------------------------------------------------------------------
+      const express = require('express');
+      const app = express();
+
+      app.get('/', (req, res) => {
+        res.send('Hello Express!');
+      });
+
+      app.listen(3000, () => {
+        console.log('Express server is listening on port 3000!');
+      });
+  -----------------------------------------------------------------------------------------
+  * And to run the app, you simply navigate to localhost:3000 in your browser.
+  * Remember to run "npm start" to start your app and press ctrl-c when you are done.
+
+
+
+
+## How do you route in an express application?
+==============================================
+  * Routing is the process of responding to a client's request to a particular endpoint. An endpoint 
+    consists of the path and the HTTP request method (GET, POST, and so on).
+  * Express will examine the HTTP method and the path and attempt to find a relevant route.
+  * When it finds a route we say that the route is matched and the functions associated with that route are executed.
+  * If no routes are found a response with status 404 Not Found is returned.
+
+  * Examples of routes would be:
+      * http://mywebsite.com/                       -- Home
+      * http://mywebsite.com/about                  -- About page
+      * http://mywebsite.com/about/contact          -- Contact page
+
+
+
+
+## How do you create a GET route?
+=================================
+  * To create a GET route,  we use the .get() method of the Express application object.   
+    ------------------------------------------------------------------------
+        app.get(PATH, HANDLER);
+    ------------------------------------------------------------------------
+        * The "PATH" is the path on the server.
+        * The "HANDLER" is a function to be executed when the route matches.
+            * The handler must accept two parameters:
+                1. Request Object (req)
+                2. Response Object (res)
+            * The response function is invoked by express in response to a request for
+              this endpointand the two object are passed into the function.
+
+  * When you make a request to localhost:3000/greeting, you ill receive the message "Hello !orld!"
+    ------------------------------------------------------------------------
+        app.get('/greeting', (req, res) => {
+          res.send('Hello World!');
+        })
+    ------------------------------------------------------------------------
+
+
+
+## What are the request and response objects?
+============================================
+  * In a basic request handler, it accepts two parameters, "req" and "res".
+    -------------------------------------------------------------------
+      (req, res) => {
+        res.send('Hello Express!');
+      }
+    -------------------------------------------------------------------
+
+
+
+
+## Why and how to do you log in application development?
+========================================================
+  * To to a simpel log, you simply need to insert a console.log with a message:
+    -------------------------------------------------------------------------
+        app.get('/greeting', (req, res) => {
+          console.log('greeting was called');                               // logged successful route to console.
+          res.send('Hello World!');
+        })
+    -------------------------------------------------------------------------
+
+
+
+## How do you use the morgan logging tool?
+===========================================
+  * However, simple logging is limited in functionality, so you need to use a logging tool like morgan.
+  * Morgan has the ability to format the log output in a number of different ways. For example, you can 
+    use: combined, common, dev, short and tiny.
+  * You can also customize the output.
+
+  1. First, install the morgan library:     npm install morgan
+  2. Import morgan to your application:     const morgan = require('morgan');
+  2. "Mount" the morgan middleware:         app.use(morgan('dev'));
+
+
+
+
+## What is middleware?
+=====================
+  * middleware just means that a request can pass through multiple functions on the server before reaching
+    its final handler. 
+  * In working with Express, you'll often hear that it's essentially a series of middleware functions.
+  * Morgan is an example of a middleware function.
+  * Think of Express like a factory with an assembly line. Each handler function is a station along that 
+    assembly line. As the request progresses along the assembly line, each handler function may modify it. 
+    Eventually, the request gets to the final handler function in the line and a response is sent back 
+    to the client.
+  * It is important to note that at each point along the line, the handler function may choose to abort 
+    the progress and respond to the client with an error.
+    -------------------------------------------------------------------------
+      const express = require('express');
+      const morgan = require('morgan');
+
+      const app = express();
+
+      app.use(morgan('dev'));                                                     // all requests pass through middleware like morgan to thier final handler.
+
+      app.get('/', (req, res) => {                                                // This is the final handler.
+          res.send('Hello Express!');
+      });
+
+      app.listen(8000, () => {
+          console.log('Express server is listening on port 8000!');
+      });
+    -------------------------------------------------------------------------
 
 
