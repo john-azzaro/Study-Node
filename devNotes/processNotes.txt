@@ -399,7 +399,7 @@ Connection: Keep-Alive
             * The response function is invoked by express in response to a request for
               this endpointand the two object are passed into the function.
 
-  * When you make a request to localhost:3000/greeting, you ill receive the message "Hello !orld!"
+  * When you make a request to localhost:3000/greeting, you will receive the message "Hello !orld!"
     ------------------------------------------------------------------------
         app.get('/greeting', (req, res) => {
           res.send('Hello World!');
@@ -531,3 +531,245 @@ Connection: Keep-Alive
     -------------------------------------------------------------------------
 
 
+
+====================
+====================
+Express Response Object
+====================
+====================
+
+
+## What is the response object in express?
+==========================================
+  * The second part of the work of the web server is constructing the HTTP response and sending it back to the client.
+  * Express provides an object that represents this HTTP response which we have been naming res so far.
+  * To send a response there are a few considerations:
+      * Is there an error condition? Did something fail on the server that we need to communicate to the client? Or did 
+        everything work as expected? What is the status of the response?
+      * Do you need to set any headers on the response?
+      * Do you need to send data?
+      * What format is your data that you are sending?
+
+  * The response object in Express provides several methods to allow you to construct the response that you wish to send.   
+
+
+
+## What is HTTP status?
+=======================
+  * Depending on the purpose of the request and the ability to fulfill the request you determine the status that will be 
+    sent to the client. The HTTP protocol specification defines a number of status codes with predefined meanings that 
+    you can use.
+
+  * To set the status on your repsonse, you need to use the "status()" method.
+      ----------------------------------------------------------
+          app.get('/hello', (req, res) => {
+            res.status(200);                                        // response status of 200. You can even chain them together (i.e. .status(200).send('Hello...'))
+            res.send('Hello, everything was ok!');
+          });
+      ----------------------------------------------------------
+
+  * There are a number of status codes, but here are some of the most commmon.
+
+    Code	Status                    Text	Description
+    -=-==-=--==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    200	  OK	                      The request has succeeded. This is the most common response and the default when no other status is set. 
+                                    In the examples above where we called send() the status code would automatically be 200. It is expected 
+                                    that some information is also being returned with this response.
+
+    201	  Created	                  The request has been fulfilled and a new resource has been created on the server. This is usually in 
+                                    response to a POST request. The information in the response varies, it may contain a representation of 
+                                    the created resource, or not be present. In some cases, a location header with a link to the newly-created 
+                                    resource may be set.
+
+    204	  No Content	              The server successfully processed the request but does not need to return any information.
+
+    304	  Not Modified	            The requested resource has not been modified since the last time it was requested. This saves bandwidth as 
+                                    the same resource does not need to be sent twice.
+
+    400	  Bad Request	              The request could not be understood by the server due to malformed syntax. The client should fix the problem 
+                                    with the request before resubmitting.
+
+    401	  Unauthorized	            The request requires user authentication. For instance, if the credentials provided are not valid, or 
+                                    if they are missing.
+
+    403	  Forbidden	                The server understood the request but is refusing to fulfill it. Authentication will make no difference. 
+                                    Typically means that the operation being requested is not allowed.
+
+    404	  Not Found	                The requested resource could not be found. This is used when the path being requested does not exist.
+
+    500	  Internal Server Error	    The server encountered an unexpected condition which prevented it from fulfilling the request. This is a 
+                                    generic catch-all error when any server-side exception happens.
+    -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+
+
+
+What is JSON data?
+===================
+  * Frequently the server needs to send JSON data to the client.
+  * To do so a content-type header needs to be set indicating to the client that the body of the response contains JSON.
+  * The .json() method sets the correct content-type and converts the parameter provided to a JSON string using JSON.stringify(). 
+
+  * When you send an object via JSON:
+    -----------------------------------------------------------------------
+        app.get('/video', (req, res) => {
+          const video = {
+            title: 'Cats falling over',
+            description: '15 minutes of funny cats',
+            length: '15.40'
+          }
+          res.json(video);                                                    // the response is the video object sent via the json method
+        });
+    -----------------------------------------------------------------------
+
+    * When you send an array of objects, you still use the res.json method:
+    ----------------------------------------------------------------------
+      app.get('/colors', (req, res) => {
+        const colors = [
+          {
+            name: "red",
+            rgb: "FF0000"
+          },
+          {
+            name: "green",
+            rgb: "00FF00"
+          },
+        ];
+        res.json(colors);                                                     // the response is the colors array with objects via the json method.
+      });
+    ----------------------------------------------------------------------
+
+
+
+
+
+## How do you build an Express application?
+===========================================
+  * Express is used to build a web application that is the server side of your application.
+  * The client application may be built with any technology you choose including React.
+
+  Objective: Build a React application.
+      * For this application, create 2 components: The App component (with form) and the book component to display the book details.
+
+  
+  1. The book component that displays the details of the individual books
+    --------------------------------------------------------------------------
+        export default function Book(props) {
+          return (
+            <div className="book">
+              <h2>{ props.title }</h2>
+              <div className="book_author">by { props.author }</div>
+              <div className="book_publisher">
+                Published by: { props.publisher }
+                on {moment(props.published_date).format('DD MMM YYYY')}
+              </div>
+              <div className="book_description">{ props.description }</div>
+              <div className="book_details">
+                Rank {props.rank} this week
+              </div>
+            </div>
+          );
+        }
+    --------------------------------------------------------------------------
+
+2. The App component implements the form and to capture user input:
+  ----------------------------------------------------------------------------
+    import React, { Component } from 'react';
+    import './App.css';
+    import Book from './book/book';
+
+    class App extends Component {                                                     // App component:
+      constructor(props) {                                                            // with a constructor and props passed in...
+        super(props);                                                                 // with access to outer props
+        this.state = {                                                                // and initial states.
+          books: [],
+          search: '',
+          sort: '',
+          error: null
+        }
+      }
+
+      setSearch(search) {                                                             // method to set the state of the search feature.
+        this.setState({
+          search
+        });
+      }
+
+      setSort(sort) {                                                                 // method to set the state for the sort feature.
+        this.setState({
+          sort
+        });
+      }
+
+      handleSubmit(e) {                                                               // event handler for the form submission.
+        e.preventDefault();                                                           // ... prevent defualt for form submission...
+        const baseUrl = 'http://localhost:8000/books';
+        const params = [];
+        if (this.state.search) {
+          params.push(`search=${this.state.search}`);
+        }
+        if (this.state.sort) {
+          params.push(`sort=${this.state.sort}`);
+        }
+        const query = params.join('&');
+        const url = `${baseUrl}?${query}`;
+
+        fetch(url)
+          .then(res => {
+            if (!res.ok) {
+              throw new Error(res.statusText);
+            }
+            return res.json();
+          })
+          .then(data => {
+            this.setState({
+              books: data,
+              error: null
+            });
+          })
+          .catch(err => {
+            this.setState({
+              error: 'Sorry, could not get books at this time.'
+            });
+          })
+
+      }
+
+      render() {
+        const books = this.state.books.map((book, i) => {
+          return <Book {...book} key={i}/>
+        })
+        return (
+          <main className="App">
+            <h1>NYT Best Sellers</h1>
+            <div className="search">
+              <form onSubmit={e => this.handleSubmit(e)}>
+                <label htmlFor="search">Search: </label>
+                <input
+                  type="text"
+                  id="search"
+                  name="search"
+                  value={this.state.search}
+                  onChange={e => this.setSearch(e.target.value)}/>
+
+                <label htmlFor="sort">Sort: </label>
+                <select id="sort" name="sort" onChange={e => this.setSort(e.target.value)}>
+                  <option value="">None</option>
+                  <option value="title">Title</option>
+                  <option value="rank">Rank</option>
+                </select>
+                <button type="submit">Search</button>
+              </form>
+              <div className="App_error">{ this.state.error }</div>
+            </div>
+            {books}
+          </main>
+        );
+      }
+    }
+
+    export default App;
+  ----------------------------------------------------------------------------
+
+  
