@@ -256,6 +256,8 @@ Connection: Keep-Alive
 
   
 
+
+
 # What is the express framework made of?
 ========================================
   * express(): The top-level function exported by the Express module. Calling this function creates an 
@@ -273,6 +275,8 @@ Connection: Keep-Alive
 
 
 
+
+
 ## How do you create an express application?
 ============================================
   1. First, initiate an npm project with:        npm init -y       (note: use -y if you want all the default settings)
@@ -280,6 +284,8 @@ Connection: Keep-Alive
   3. Install express:                            npm install express
   4. Import express to App.js                    const express = require('express');
   5. Invoke the express module function:         const app = express();
+
+
 
 
 
@@ -296,6 +302,8 @@ Connection: Keep-Alive
           res.send('Hello Express!');                               // ... as a response a response of sending the message "Hello Express".
         });
     -----------------------------------------------------------
+
+
 
 
 ## What is a port?
@@ -323,6 +331,7 @@ Connection: Keep-Alive
           console.log('Express server is listening on port 3000!');
         });
     --------------------------------------------------------------------------------------
+
 
 
 
@@ -385,6 +394,7 @@ Connection: Keep-Alive
 
 
 
+
 ## What are the request and response objects?
 ============================================
   * In a basic request handler, it accepts two parameters, "req" and "res".
@@ -398,6 +408,7 @@ Connection: Keep-Alive
   * The second parameter, named res is an object that represents the HTTP response that Express 
     sends to the client after the request is processed.
   * The names of these parameters do not matter, but by convention, they are usually named req and res.
+
 
 
 
@@ -464,6 +475,7 @@ Connection: Keep-Alive
 
 
 
+
 ## How do you use the morgan logging tool?
 ===========================================
   * However, simple logging is limited in functionality, so you need to use a logging tool like morgan.
@@ -508,3 +520,21 @@ Connection: Keep-Alive
     -------------------------------------------------------------------------
 
 
+
+
+
+## Why do you want to use Express to work with datasets?
+=========================================================
+  * Sometimes datasets can be huge, such as 15 mb or even larger. 
+  * Normally, users have to download all the HTML and CSS and JavaScript files to get an application to work.
+  * However, if they also had to download all the data, it would be downright impossible, like if you went to
+    you tube and before wtaching any video you had to download EVERY video before watching anything.
+  * You want users to to download only whats necessary to make the application run, preferably below 1 MB.
+  * Express apps can store data and allow the user to choose what data they want to download.
+
+
+
+
+## What sort of functionality would you want a frontend application to have to work with datasets?
+===================================================================================================
+  
