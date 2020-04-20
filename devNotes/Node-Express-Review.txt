@@ -538,11 +538,29 @@ Connection: Keep-Alive
 What is the best way to create GET endpoints?
 =============================================
   * The best way to create GET endpoints is to:
-    1. creata an app.get route.
-    2. First pass in the path you want (i.e. '/types')
-    3. Second pass in the callback function (handleGetTypes)
-    4. Create the callback function middleware.
+    1. creat a an app.get route.
+      A. First pass in the path you want (i.e. '/types')
+      B. Second pass in the callback function (handleGetTypes)
+    2. Create the callback function middleware.
 
-    * Remember, a callback is a function passed to another function as an argument. So in this case, the 
-    
+    * Remember, a callback is a function passed to another function as an argument. So in this case, the
+      "handleGetTypes" is called as a callback function which is found in the middleware section.
+
+    1.  Create an app.get route.
+      -------------------------------------------------------------------------------
+        app.get('path', callback );
+
+        app.get('/types', handleGetTypes);                                                 // path is to /types and the callback is "handleGetTypes"
+      -------------------------------------------------------------------------------
+
+    2. Create a callback middleware for the GET route:
+      -------------------------------------------------------------------------------
+        function handleGetTypes(req, res) {
+
+        }
+
+        app,get('/types', handleGetTypes);
+      -------------------------------------------------------------------------------
+
+
   
