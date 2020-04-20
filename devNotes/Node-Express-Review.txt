@@ -556,11 +556,13 @@ What is the best way to create GET endpoints?
     2. Create a callback middleware for the GET route:
       -------------------------------------------------------------------------------
         function handleGetTypes(req, res) {
-
+          // res code here.
         }
 
         app,get('/types', handleGetTypes);
       -------------------------------------------------------------------------------
 
+
+  
 
   
